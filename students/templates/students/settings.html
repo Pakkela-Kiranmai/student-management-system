@@ -1,0 +1,58 @@
+{% extends 'students/base.html' %}
+
+{% block content %}
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-body p-4">
+
+                    <h3 class="fw-bold mb-4 text-center">⚙️ Account Settings</h3>
+
+                    <hr>
+
+                    <!-- Change Password -->
+                    <div class="mb-4">
+                        <h5 class="fw-semibold">🔐 Security</h5>
+                        <p class="text-muted">Change your account password.</p>
+                        <a href="{% url 'password_change' %}" class="btn btn-outline-primary">
+                            Change Password
+                        </a>
+                    </div>
+
+                    <hr>
+
+                    <!-- Profile Settings -->
+                    <div class="mb-4">
+                        <h5 class="fw-semibold">👤 Profile</h5>
+                        <p class="text-muted">View your profile details.</p>
+                        <a href="{% url 'profile' %}" class="btn btn-outline-secondary">
+                            View Profile
+                        </a>
+                    </div>
+
+                    <hr>
+
+                    <!-- Logout -->
+                    <div class="mb-3">
+                        <h5 class="fw-semibold text-danger">🚪 Logout</h5>
+                        <p class="text-muted">Logout from your account.</p>
+
+                        <form method="POST" action="{% url 'logout' %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">
+                                Logout
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+{% endblock %}

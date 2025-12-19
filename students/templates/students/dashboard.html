@@ -1,0 +1,137 @@
+{% extends 'students/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+    .dashboard-card {
+        border-radius: 15px;
+        transition: all 0.3s ease-in-out;
+        cursor: pointer;
+        height: 100%;
+        background: #ffffff;
+    }
+
+    .dashboard-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .dashboard-icon {
+        font-size: 45px;
+        color: #0d6efd;
+    }
+
+    .dashboard-title {
+        font-weight: 600;
+        margin-top: 10px;
+    }
+</style>
+
+<div class="container py-5">
+
+    <!-- Header -->
+    <div class="text-center mb-5">
+        <h2 class="fw-bold">Student Management Dashboard</h2>
+        <p class="text-muted">Manage students, attendance, marks and settings</p>
+    </div>
+
+    <div class="row g-4">
+
+        <!-- Add Student -->
+        <div class="col-md-4 col-lg-3">
+            <a href="{% url 'add_student' %}" class="text-decoration-none text-dark">
+                <div class="card dashboard-card p-4 text-center">
+                    <div class="dashboard-icon">👨‍🎓</div>
+                    <h5 class="dashboard-title">Add Student</h5>
+                </div>
+            </a>
+        </div>
+
+        <!-- View Students -->
+        <div class="col-md-4 col-lg-3">
+            <a href="{% url 'view_students' %}" class="text-decoration-none text-dark">
+                <div class="card dashboard-card p-4 text-center">
+                    <div class="dashboard-icon">📋</div>
+                    <h5 class="dashboard-title">View Students</h5>
+                </div>
+            </a>
+        </div>
+
+        <!-- Attendance -->
+        <div class="col-md-4 col-lg-3">
+            <a href="{% url 'attendance' %}" class="text-decoration-none text-dark">
+                <div class="card dashboard-card p-4 text-center">
+                    <div class="dashboard-icon">🗓️</div>
+                    <h5 class="dashboard-title">Attendance</h5>
+                </div>
+            </a>
+        </div>
+
+        <!-- Add Marks -->
+        <div class="col-md-4 col-lg-3">
+            <a href="{% url 'add_marks' %}" class="text-decoration-none text-dark">
+                <div class="card dashboard-card p-4 text-center">
+                    <div class="dashboard-icon">📝</div>
+                    <h5 class="dashboard-title">Add Marks</h5>
+                </div>
+            </a>
+        </div>
+
+        <!-- View Marks -->
+        <div class="col-md-4 col-lg-3">
+            <a href="{% url 'view_marks' %}" class="text-decoration-none text-dark">
+                <div class="card dashboard-card p-4 text-center">
+                    <div class="dashboard-icon">📊</div>
+                    <h5 class="dashboard-title">View Marks</h5>
+                </div>
+            </a>
+        </div>
+
+        <!-- Profile -->
+        <div class="col-md-4 col-lg-3">
+            <a href="{% url 'profile' %}" class="text-decoration-none text-dark">
+                <div class="card dashboard-card p-4 text-center">
+                    <div class="dashboard-icon">👤</div>
+                    <h5 class="dashboard-title">Profile</h5>
+                </div>
+            </a>
+        </div>
+
+        <!-- Settings -->
+        <div class="col-md-4 col-lg-3">
+            <a href="{% url 'settings' %}" class="text-decoration-none text-dark">
+                <div class="card dashboard-card p-4 text-center">
+                    <div class="dashboard-icon">⚙️</div>
+                    <h5 class="dashboard-title">Settings</h5>
+                </div>
+            </a>
+        </div>
+
+        <!-- About -->
+        <div class="col-md-4 col-lg-3">
+            <a href="{% url 'about' %}" class="text-decoration-none text-dark">
+                <div class="card dashboard-card p-4 text-center">
+                    <div class="dashboard-icon">ℹ️</div>
+                    <h5 class="dashboard-title">About</h5>
+                </div>
+            </a>
+        </div>
+
+        <!-- Logout -->
+        <div class="col-md-4 col-lg-3">
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="w-100 border-0 bg-transparent p-0">
+                    <div class="card dashboard-card p-4 text-center">
+                        <div class="dashboard-icon text-danger">🚪</div>
+                        <h5 class="dashboard-title text-danger">Logout</h5>
+                    </div>
+                </button>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

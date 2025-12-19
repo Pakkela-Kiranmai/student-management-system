@@ -1,0 +1,70 @@
+{% extends 'students/base.html' %}
+
+{% block content %}
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-body p-4">
+
+                    <div class="text-center mb-4">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+                             width="120" class="rounded-circle mb-3">
+                        <h3 class="fw-bold">{{ request.user.username }}</h3>
+                        <p class="text-muted">Student Management System User</p>
+                    </div>
+
+                    <hr>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <p><strong>Username:</strong></p>
+                        </div>
+                        <div class="col-md-6 text-muted">
+                            {{ request.user.username }}
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <p><strong>Email:</strong></p>
+                        </div>
+                        <div class="col-md-6 text-muted">
+                            {{ request.user.email|default:"Not Provided" }}
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <p><strong>Account Created:</strong></p>
+                        </div>
+                        <div class="col-md-6 text-muted">
+                            {{ request.user.date_joined }}
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <p><strong>Last Login:</strong></p>
+                        </div>
+                        <div class="col-md-6 text-muted">
+                            {{ request.user.last_login }}
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <a href="{% url 'settings' %}" class="btn btn-primary px-4">
+                            ⚙️ Account Settings
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'students/base.html' %}
+
+{% block content %}
+<div class="container py-4">
+    <h2>Student Marks</h2>
+
+    <table class="table table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>Student</th>
+                <th>Subject</th>
+                <th>Marks</th>
+                <th>Grade</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for m in marks %}
+            <tr>
+                <td>{{ m.student.name }}</td>
+                <td>{{ m.subject }}</td>
+                <td>{{ m.marks }}</td>
+                <td>{{ m.grade }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
