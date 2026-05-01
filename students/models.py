@@ -1,5 +1,6 @@
 from django.db import models
 
+# ------------------ Student Model ------------------
 class Student(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
@@ -10,8 +11,16 @@ class Student(models.Model):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
+
+    # ✅ Optional but useful
+    @property
+    def full_name(self):
+        return f"{self.first_name} {self.last_name}"
+
+
+# ------------------ Attendance Model ------------------
 class Attendance(models.Model):
-    student = models.ForeignKey('Student', on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
     date = models.DateField(auto_now_add=True)
     status = models.CharField(
         max_length=10,
@@ -19,10 +28,12 @@ class Attendance(models.Model):
     )
 
     def __str__(self):
-        return f"{self.student.name} - {self.date} - {self.status}"
+        return f"{self.student.full_name} - {self.date} - {self.status}"
 
+
+# ------------------ Marks Model ------------------
 class Marks(models.Model):
-    student = models.ForeignKey('Student', on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
     subject = models.CharField(max_length=100)
     marks = models.IntegerField()
 
@@ -37,4 +48,4 @@ class Marks(models.Model):
             return 'D'
 
     def __str__(self):
-        return f"{self.student.name} - {self.subject}"
+        return f"{self.student.full_name} - {self.subject}"

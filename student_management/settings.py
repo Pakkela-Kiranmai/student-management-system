@@ -1,3 +1,6 @@
+import pymysql
+pymysql.install_as_MySQLdb()
+import os
 """
 Django settings for student_management project.
 
@@ -24,10 +27,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-$qsa@-u+!1-b=+%c0pqua)@8j1@@-4!z!58hsna4jruklj6rxj'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = []
+DEBUG = False
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -77,8 +82,12 @@ WSGI_APPLICATION = 'student_management.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'student_db',
+        'USER': 'root',
+        'PASSWORD': 'Kiranmai@14',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
@@ -129,3 +138,4 @@ MESSAGE_TAGS = {
     messages_constants.WARNING: 'warning',
     messages_constants.ERROR: 'danger',
 }
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
